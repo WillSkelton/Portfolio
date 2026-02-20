@@ -2,9 +2,10 @@ services:
   app:
     build: .
     ports:
-      - "5173:5173"  # [Host Port] : [Container Port]
+      - "5173:5173"
     volumes:
-      - .:/app       # Syncs your local folder with the container's /app folder
-      - /app/node_modules # "Anonymous volume" to protect container modules
+      - .:/app                # Copy everything from the repo to /app in the container
+      - /app/node_modules     # ...Except the node modules folder (we want a fresh one)
+      - /app/.yarn            # .. and also the .yarn folder (we also want a fresh one of those)
     environment:
-      - CHOKIDAR_USEPOLLING=true # Helps with file-change detection on Windows/Mac
+      - CHOKIDAR_USEPOLLING=true

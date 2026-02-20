@@ -1,11 +1,18 @@
 # Use a slim version of Node for a smaller footprint
 FROM node:24-slim
 
+# Set the environment variable so Corepack is always ready
+ENV COREPACK_ENABLE_AUTO_PIN=0 
+
+# Enable Corepack (the modern way to manage Yarn/PNPM versions)
+RUN corepack enable
+
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy BOTH the package.json and the yarn lockfile
-COPY package.json yarn.lock ./
+# Copy only the files needed for install
+COPY package.json yarn.lock* .yarnrc.yml* ./
+COPY .yarn ./.yarn
 
 # Install dependencies
 RUN yarn install
@@ -18,4 +25,4 @@ EXPOSE 5173
 
 # Run the dev server
 # Vite needs the --host flag to talk to your browser from the container
-CMD ["yarn", "dev", "--host"]
+CMD ["yarn", "dev", "--host", "0.0.0.0"]
