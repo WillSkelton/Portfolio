@@ -1,22 +1,19 @@
-# Ignore the massive dependency folders
+# Ignore the local heavy lifting (Docker will run its own yarn install)
 node_modules
 .yarn/cache
 .yarn/unplugged
 .pnp.*
 
-# Ignore build outputs
+# Ignore build artifacts
 dist
 build
 
-# Ignore local environment files and logs
-.env
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Ignore git and IDE settings
+# Ignore git and local config
 .git
-.vscode
-.idea
+.gitignore
+.dockerignore
+README.md
+
+# Ignore OS-specific files
 .DS_Store
+Thumbs.db
