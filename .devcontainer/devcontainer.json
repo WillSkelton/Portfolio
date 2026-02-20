@@ -1,0 +1,19 @@
+{
+  "name": "Portfolio Dev Container",
+  "dockerComposeFile": ["../docker-compose.yml"],
+  "service": "app",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "Arjun.swagger-viewer",
+        "styled-components.vscode-styled-components"
+      ]
+    }
+  },
+  "remoteUser": "node",
+  "forwardPorts": [5173],
+  "postCreateCommand": "corepack enable && yarn install"
+}

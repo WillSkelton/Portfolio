@@ -1,14 +1,18 @@
 # Use a slim version of Node for a smaller footprint
-FROM node:24-slim
+# FROM node:24-slim
+FROM node:24
 
 # Set the environment variable so Corepack is always ready
-ENV COREPACK_ENABLE_AUTO_PIN=0 
+# ENV COREPACK_ENABLE_AUTO_PIN=0 
 
 # Enable Corepack (the modern way to manage Yarn/PNPM versions)
 RUN corepack enable
 
 # Set the working directory inside the container
 WORKDIR /app
+
+RUN chown -R node:node /app
+USER node
 
 # Copy only the files needed for install
 COPY package.json yarn.lock* .yarnrc.yml* ./
