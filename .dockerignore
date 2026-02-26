@@ -1,0 +1,19 @@
+# Ignore the local heavy lifting (Docker will run its own yarn install)
+node_modules
+.yarn/cache
+.yarn/unplugged
+.pnp.*
+
+# Ignore build artifacts
+dist
+build
+
+# Ignore git and local config
+.git
+.gitignore
+.dockerignore
+README.md
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
